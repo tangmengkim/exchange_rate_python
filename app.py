@@ -4,7 +4,7 @@ from flask import Flask
 from utils import exchange_rate
 app = Flask(__name__)
 
-# get .env
+#  .env
 ACLD_WEBSITE = os.environ.get("ACLD_WEBSITE")
 
 @app.route('/')
