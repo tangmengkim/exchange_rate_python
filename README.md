@@ -1,5 +1,5 @@
 # exchange_rate_python
-Description of your project.
+Description
 
 ## Setup
 
