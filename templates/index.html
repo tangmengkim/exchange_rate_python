@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange-Rate</title>
+</head>
+<body style="text-align: -webkit-center;">
+    <form id="date_input_form" method="POST" action="/edit">
+        <label for="date_input">Date : </label>
+        <input type="date" name="date_input" value={{data.status_date}} required>
+        <button type="submit">Apply</button>
+    </form>
+    {% if exchange_rate is not none %}
+    <h1>{{data.status_date}}</h1>
+        <h2>Exchange Rate:</h2>
+        <table  border="1">
+            <tr >
+                <th>Base Currency</th>
+                <th>Bid</th>
+                <th>Ask</th>
+            </tr>
+            {% for base, data in data.exchange_rate.items() %} 
+                    <tr>
+                        <td>{{ base }}</td>
+                        <td>{{ data.bid }}</td>
+                        <td>{{ data.ask }}</td>
+                    </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <h1>Currency Converter</h1>
+
+    <form method="POST" action="/">
+        <label for="base_currency">Base Currency:</label>
+        <input type="text" name="base_currency" required>
+
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" required>
+
+        <label for="target_currency">Target Currency:</label>
+        <input type="text" name="target_currency" required>
+
+        <button type="submit">Convert</button>
+    </form>
+    {% if converted_amount is not none %}
+        <h2>Converted Amount:</h2>
+        <p>{{ amount }} {{ base_currency }} is equal to {{ converted_amount }} {{ target_currency }}</p>
+    {% endif %}
+</body>
+</html>

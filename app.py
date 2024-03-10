@@ -1,17 +1,9 @@
-import os
-import json
 from flask import Flask
-from utils import exchange_rate
+from views import views_p
+
 app = Flask(__name__)
 
-# get .env
-ACLD_WEBSITE = os.environ.get("ACLD_WEBSITE")
-
-@app.route('/')
-def home():
-    data = json.loads(exchange_rate(ACLD_WEBSITE))
-   
-    return data
+app.register_blueprint(views_p)
 
 if __name__ == '__main__':
     app.run(debug=True,port=8000)
