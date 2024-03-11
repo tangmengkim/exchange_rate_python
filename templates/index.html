@@ -32,21 +32,28 @@
     {% endif %}
     <h1>Currency Converter</h1>
 
-    <form method="POST" action="/">
+    <form oninput="converted_amount.value = parseFloat(amount.value)*((parseFloat(to_bid.value))/(parseFloat(to_ask.value)))">
         <label for="base_currency">Base Currency:</label>
-        <input type="text" name="base_currency" required>
+        <select id="to_bid" name="base_currency">
+            {% for base,data in data.exchange_rate.items() %}
+            <option value={{data.bid}}>{{base}}</option>
+            {% endfor %}
+          </select>
 
         <label for="amount">Amount:</label>
-        <input type="number" name="amount" required>
+        <input type="req_amount" required pattern="[0-9]*" name="amount" onkeydown="if (event.key === 'Enter') return false;">
 
-        <label for="target_currency">Target Currency:</label>
-        <input type="text" name="target_currency" required>
-
-        <button type="submit">Convert</button>
+        <label for="ask_currency">Target Currency:</label>
+        <select id="to_ask" name="ask_currency">
+            {% for base,data in data.exchange_rate.items() %}
+            <option value={{data.ask}}>{{base}}</option>
+            {% endfor %}
+          </select>
+          {%  %}
+          {% if converted_amount is not none %}
+              <h2>Converted Amount:</h2>
+              <output name="converted_amount" for="to_bid to_ask"></output>
+          {% endif %}
     </form>
-    {% if converted_amount is not none %}
-        <h2>Converted Amount:</h2>
-        <p>{{ amount }} {{ base_currency }} is equal to {{ converted_amount }} {{ target_currency }}</p>
-    {% endif %}
 </body>
 </html>
