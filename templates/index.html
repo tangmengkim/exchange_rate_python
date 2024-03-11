@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
     <title>Exchange-Rate</title>
 </head>
-<body style="text-align: -webkit-center;">
+<body >
     <form id="date_input_form" method="POST" action="/edit">
         <label for="date_input">Date : </label>
         <input type="date" name="date_input" value={{data.status_date}} required>
@@ -35,6 +36,7 @@
     <form oninput="converted_amount.value = parseFloat(amount.value)*((parseFloat(to_bid.value))/(parseFloat(to_ask.value)))">
         <label for="base_currency">Base Currency:</label>
         <select id="to_bid" name="base_currency">
+            <option value="1">KHR</option>
             {% for base,data in data.exchange_rate.items() %}
             <option value={{data.bid}}>{{base}}</option>
             {% endfor %}
@@ -45,15 +47,17 @@
 
         <label for="ask_currency">Target Currency:</label>
         <select id="to_ask" name="ask_currency">
+            <option value="1">KHR</option>
             {% for base,data in data.exchange_rate.items() %}
             <option value={{data.ask}}>{{base}}</option>
             {% endfor %}
-          </select>
-          
+        </select>
+        
           {% if converted_amount is not none %}
               <h2>Converted Amount:</h2>
               <output name="converted_amount" for="to_bid to_ask"></output>
           {% endif %}
     </form>
+    <script src="{{url_for('static', filename='scripts/script.js')}}"></script>
 </body>
 </html>
