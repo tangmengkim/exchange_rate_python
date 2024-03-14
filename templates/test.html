@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
-    <title>Exchange-Rate</title>
+    <title>Document</title>
 </head>
 <body>
     <main class="container">
-        <section class="header_list">
+        <div class="header"><h1>Exchange Rate</h1></div>
+        <div class="list">
+            <table class="menu">
+                <thead>
+                    <tr >
+                        <th>Base Currency</th>
+                        <th>Bid</th>
+                        <th>Ask</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for base, data in data.exchange_rate.items() %} 
+                    <tr>
+                        <td>{{ base }}</td>
+                        <td>{{ data.bid }}</td>
+                        <td>{{ data.ask }}</td>
+                    </tr>
+            {% endfor %}
+                </tbody>
+            </table>
 
-        </section>
-        <section class="body_list">
-            <div class="table_body">
-
-            </div>
-            <div class="convertor_body">
-
-            </div>
-        </section>
+        </div>
     </main>
 </body>
 </html>
