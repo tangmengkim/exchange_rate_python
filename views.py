@@ -27,4 +27,4 @@ def process_data():
             return ('no internet connection')
 @views_p.route('/test')
 def testing():
-    return render_template('test.html')
+    return render_template('index.html')
