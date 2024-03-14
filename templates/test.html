@@ -36,7 +36,7 @@
             <div class="date">
                 <form id="date_input_form" method="POST" action="/edit">
                     <label for="date_input">Date : </label>
-                    <input type="date" name="date_input" value={{data.status_date}} required>
+                    <input type="date" name="date_input" value={{data.status_date}} required pattern="\d{4}-\d{2}-\d{2}">
                     <button type="submit">Apply</button>
                 </form>    
             </div>

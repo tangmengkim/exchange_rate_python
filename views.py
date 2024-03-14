@@ -24,7 +24,7 @@ def process_data():
         exchange_rate = json.loads(exchange_rates(date_status))
         if exchange_rate['status_code'] == 200:
 
-            return render_template('index.html',data=exchange_rate)
+            return render_template('test.html',data=exchange_rate)
         else:
             return ('no internet connection')
 
