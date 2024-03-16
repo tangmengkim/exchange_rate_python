@@ -15,3 +15,8 @@ function amount_convertor(amount,to_bid,to_ask){
     converted_amount = converted.toFixed(2)
     return converted_amount
 }
+
+function swap_currency(){
+    alert("test");
+    return false;
+}

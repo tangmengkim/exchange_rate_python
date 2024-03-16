@@ -100,6 +100,7 @@ button
   border-radius: 5px;
   background-color: rgb(39, 76, 99);
   color: white;
+  cursor: pointer;
 }
 input
 {
@@ -119,13 +120,13 @@ select
   border: none;
   outline: none;
   padding: 10px 12px;
-  border-radius: 5px;
-  background-color: rgba(128, 75, 75, 0.707);
+  border-radius: 4px;
+  background-color: rgba(70, 142, 206, 0.707);
   color: white;
   text-align: center;
-  text-shadow: 2px;
+  text-shadow:2px black;
 }
 input ,select ,button
 {
-  margin-left: 10px;
+  margin-left: 20px;
 }
