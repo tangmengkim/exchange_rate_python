@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Exchange-Rate</title>
 </head>
 <body >
@@ -36,9 +37,10 @@
     <form oninput="converted_amount.value = amount_convertor(amount.value,to_bid.value,to_ask.value)">
         <label for="base_currency">Base Currency:</label>
         <select id="to_bid" name="base_currency">
-            <option value="1">KHR</option>
+            <option value=""></option>
+            <option value="1&1">KHR</option>
             {% for base,data in data.exchange_rate.items() %}
-            <option value={{data.bid}}>{{base}}</option>
+            <option value = {{data.bid}}&{{data.ask}}> {{base}} </option>
             {% endfor %}
           </select>
 
@@ -47,9 +49,10 @@
 
         <label for="ask_currency">Target Currency:</label>
         <select id="to_ask" name="ask_currency">
-            <option value="1">KHR</option>
+            <option value=""></option>
+            <option value="1&1">KHR</option>
             {% for base,data in data.exchange_rate.items() %}
-            <option value={{data.ask}}>{{base}}</option>
+            <option value = {{data.bid}}&{{data.ask}} > {{base}} </option>
             {% endfor %}
         </select>
         

@@ -50,7 +50,7 @@
                   <select id="to_bid" name="base_currency">
                     <option value="1">KHR</option>
                     {% for base,data in data.exchange_rate.items() %}
-                    <option value={{data.bid}} name={{base}} >{{base}}</option>
+                    <option value={{data.bid}}&{{data.ask}} name={{base}} >{{base}}</option>
                     {% endfor %}
                   </select>
                                     
@@ -60,7 +60,7 @@
                   <select id="to_ask" name="ask_currency">
                       <option value="1">KHR</option>
                       {% for base,data in data.exchange_rate.items() %}
-                      <option value={{data.ask}} name={{base}} >{{base}}</option>
+                      <option value={{data.bid}}&{{data.ask}} name={{base}} >{{base}}</option>
                       {% endfor %}
                   </select>
                   
