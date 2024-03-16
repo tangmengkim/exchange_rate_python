@@ -33,7 +33,7 @@
     {% endif %}
     <h1>Currency Converter</h1>
 
-    <form oninput="converted_amount.value = parseFloat(amount.value)*((parseFloat(to_bid.value))/(parseFloat(to_ask.value)))">
+    <form oninput="converted_amount.value = amount_convertor(amount.value,to_bid.value,to_ask.value)">
         <label for="base_currency">Base Currency:</label>
         <select id="to_bid" name="base_currency">
             <option value="1">KHR</option>
