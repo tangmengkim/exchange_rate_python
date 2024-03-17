@@ -22,13 +22,13 @@
               <th>Ask</th>
             </tr>
             <tbody>
-                {% for base, data in data.exchange_rate.items() %} 
-                    <tr>
-                        <td>{{ base }}</td>
-                        <td>{{ data.bid }}</td>
-                        <td>{{ data.ask }}</td>
-                    </tr>
-            {% endfor %}
+              {% for base, data in data.exchange_rate.items() %} 
+              <tr>
+                  <td>{{ base }}</td>
+                  <td>{{ data.bid }}</td>
+                  <td>{{ data.ask }}</td>
+              </tr>
+              {% endfor %}
             </tbody>
           </thead>
         </table>
@@ -36,42 +36,49 @@
   
             <div class="date" >
                 <form id="date_input_form" method="POST" action="/edit" onchange="date_input_form.submit()">
-                    <label for="date_input">Date : </label>
+                    <label for="date_input"></label>
                     <input type="date" name="date_input" value={{data.status_date}} required pattern="\d{4}-\d{2}-\d{2}">
 
                 </form>    
             </div>
             <div class="converter-form">
               <h2>Convertor</h2>
-            <form oninput="converted_amount.value = amount_convertor(amount.value,to_bid.value,to_ask.value)">
+            <form 
+              
+                oninput="
+                    converted_amount.value = amount_convertor(amount.value,to_bid,to_ask); 
+                return false">
                 
               <label for="base_currency"></label>
                 <div>
                   <select id="to_bid" name="base_currency">
-                    <option value="1">KHR</option>
+                    <option value="">- -</option>
+                    <option value="1&1">KHR</option>
                     {% for base,data in data.exchange_rate.items() %}
-                    <option value={{data.bid}}&{{data.ask}} name={{base}} >{{base}}</option>
+                    <option value={{data.bid}}&{{data.ask}} >{{base}}</option>
                     {% endfor %}
                   </select>
-                                    
-                    <button onclick="swap_currency()" ><i class="fa-solid fa-right-left"></i></button>
-                  
+                      <button onclick="swap_currency();return false">
+                        <i class="fa-solid fa-right-left"></i>
+                      </button>          
+              
                   <label for="ask_currency"></label>
                   <select id="to_ask" name="ask_currency">
-                      <option value="1">KHR</option>
+                      <option value="">- -</option>
+                      <option value="1&1">KHR</option>
                       {% for base,data in data.exchange_rate.items() %}
-                      <option value={{data.bid}}&{{data.ask}} name={{base}} >{{base}}</option>
+                      <option value={{data.bid}}&{{data.ask}} >{{base}}</option>
                       {% endfor %}
                   </select>
                   
                 </div>
                 <label for="amount"></label>
-                <input type="req_amount" pattern="[0-9]*" name="amount" onkeydown="if (event.key === 'Enter') return false;">
+                <input id="input-amount" type="req_amount" pattern="[0-9]*" name="amount" onkeydown="if (event.key === 'Enter') return false;">
         
-                
-                  {% if converted_amount is not none %}
-                      <p>Converted Amount:</p>
-                      <output name="converted_amount" for="to_bid to_ask"></output>
+                  {% if converted_amount is not none  %}
+                      <div>
+                        <output id="output-amount" name="converted_amount" for="to_bid to_ask"></output>
+                      </div>
                   {% endif %}
 
             </form>

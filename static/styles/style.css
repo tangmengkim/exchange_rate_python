@@ -114,6 +114,16 @@ input
   text-align: center;
   text-shadow: 2px;
 }
+input[type="date"]
+{
+  background:none;
+  font-size: 40px;
+  letter-spacing: 5px;
+  font-weight: 600;
+  padding: 0;
+  margin: 20px 0;
+}
+
 select
 {
   font-size: 1rem;
@@ -129,4 +139,10 @@ select
 input ,select ,button
 {
   margin-left: 20px;
+}
+#output-amount
+{
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(45, 45, 45, 0.596);
 }
