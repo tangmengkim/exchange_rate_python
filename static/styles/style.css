@@ -1,6 +1,148 @@
-*{
-    margin: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
-body{
-    text-align: -webkit-center;
+body {
+  min-height: 100vh;
+  background: url(https://r4.wallpaperflare.com/wallpaper/61/631/777/javascript-code-web-development-wallpaper-b960282d61aacd3b4677a84f3001c6cd.jpg)
+    center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+table,
+td,
+th {
+  padding: 1rem;
+}
+.table-header > h1 {
+  color: #d5d1defe;
+}
+.main-table {
+  width: 36px;
+  height: 90vh;
+  background-color: #fff5;
+  backdrop-filter: blur(7px);
+  box-shadow: 0 0.4rem 0.8rem #0005;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  
+}
+.table-header {
+  width: 100%;
+  height: 10%;
+  /* background-color: #fff4; */
+  padding: 0.8rem 1rem;
+}
+.table-body {
+  width: 95%;
+  max-height: calc(89% 0.8rem);
+  background-color: #dae5f2a5;
+  margin: 0.8rem auto;
+  border-radius: 0.6rem;
+  overflow: auto;
+}
+.table-body::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+.table-body::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: #0004;
+  visibility: hidden;
+}
+.table-body:hover::-webkit-scrollbar-thumb {
+  visibility: hidden;
+}
+
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 1rem;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #accff7b4;
+}
+tbody td:nth-child(even) {
+  background-color: #0000000b;
+}
+.table-body {
+  display: flex;
+}
+.converter 
+{
+  text-align: center;
+  background-color: #5d84b1b7;
+  width: 600px;
+  height: auto;
+  line-height: 60px;
+}
+.converter h1{
+  margin: 20px;
+}
+button
+{
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  background-color: rgb(39, 76, 99);
+  color: white;
+  cursor: pointer;
+}
+input
+{
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.397);
+  color: white;
+  text-align: center;
+  text-shadow: 2px;
+}
+input[type="date"]
+{
+  background:none;
+  font-size: 40px;
+  letter-spacing: 5px;
+  font-weight: 600;
+  padding: 0;
+  margin: 20px 0;
+}
+
+select
+{
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  border-radius: 4px;
+  background-color: rgba(70, 142, 206, 0.707);
+  color: white;
+  text-align: center;
+  text-shadow:2px black;
+}
+input ,select ,button
+{
+  margin-left: 20px;
+}
+#output-amount
+{
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(45, 45, 45, 0.596);
 }
