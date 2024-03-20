@@ -25,8 +25,8 @@
               {% for base, data in data.exchange_rate.items() %} 
               <tr>
                   <td>{{ base }}</td>
-                  <td>{{ data.bid }}</td>
-                  <td>{{ data.ask }}</td>
+                  <td>KHR {{ data.bid }}</td>
+                  <td>KHR {{ data.ask }}</td>
               </tr>
               {% endfor %}
             </tbody>
