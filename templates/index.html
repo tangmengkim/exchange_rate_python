@@ -1,66 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <title>Exchange-Rate</title>
-</head>
-<body >
-    <form id="date_input_form" method="POST" action="/edit">
-        <label for="date_input">Date : </label>
-        <input type="date" name="date_input" value={{data.status_date}} required>
-        <button type="submit">Apply</button>
-    </form>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Test</title>
+  <body>
     {% if exchange_rate is not none %}
-    <h1>{{data.status_date}}</h1>
-        <h2>Exchange Rate:</h2>
-        <table  border="1">
-            <tr >
-                <th>Base Currency</th>
-                <th>Bid</th>
-                <th>Ask</th>
+    <main class="table">
+      <section class="table-header">
+        <h1>Exchange-Rate</h1>
+      </section>
+      <section class="table-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Base Currency</th>
+              <th >Bid</th>
+              <th>Ask</th>
             </tr>
-            {% for base, data in data.exchange_rate.items() %} 
-                    <tr>
-                        <td>{{ base }}</td>
-                        <td>{{ data.bid }}</td>
-                        <td>{{ data.ask }}</td>
-                    </tr>
-            {% endfor %}
+            <tbody>
+              {% for base, data in data.exchange_rate.items() %} 
+              <tr>
+                  <td>{{ base }}</td>
+                  <td>KHR {{ data.bid }}</td>
+                  <td>KHR {{ data.ask }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </thead>
         </table>
-    {% endif %}
-    <h1>Currency Converter</h1>
+        <div class="converter">
+            <div class="date" >
+                <form id="date_input_form" method="POST" action="/edit" onchange="date_input_form.submit()">
+                    <label for="date_input"></label>
+                    <input type="date" name="date_input" value={{data.status_date}} required pattern="\d{4}-\d{2}-\d{2}">
 
-    <form oninput="converted_amount.value = amount_convertor(amount.value,to_bid.value,to_ask.value)">
-        <label for="base_currency">Base Currency:</label>
-        <select id="to_bid" name="base_currency">
-            <option value=""></option>
-            <option value="1&1">KHR</option>
-            {% for base,data in data.exchange_rate.items() %}
-            <option value = {{data.bid}}&{{data.ask}}> {{base}} </option>
-            {% endfor %}
-          </select>
-
-        <label for="amount">Amount:</label>
-        <input type="req_amount" required pattern="[0-9]*" name="amount" onkeydown="if (event.key === 'Enter') return false;">
-
-        <label for="ask_currency">Target Currency:</label>
-        <select id="to_ask" name="ask_currency">
-            <option value=""></option>
-            <option value="1&1">KHR</option>
-            {% for base,data in data.exchange_rate.items() %}
-            <option value = {{data.bid}}&{{data.ask}} > {{base}} </option>
-            {% endfor %}
-        </select>
+                </form>    
+            </div>
+            <div class="converter-form">
+              <h2>Convertor</h2>
+            <form 
+              
+                oninput=" amount_convertor(amount.value,to_bid,to_ask); return false">
+                
+              <label for="base_currency"></label>
+                <div>
+                  <select id="to_bid" name="base_currency">
+                    <option value = "">- -</option>
+                    <option value = "1&1">KHR</option>
+                    {% for base,data in data.exchange_rate.items() %}
+                    <option value = {{data.bid}}&{{data.ask}} >{{base}}</option>
+                    {% endfor %}
+                  </select>
+                      <button onclick="swap_currency();return false">
+                        <i class="fa-solid fa-right-left"></i>
+                      </button>          
+              
+                  <label for="ask_currency"></label>
+                  <select id="to_ask" name="ask_currency">
+                      <option value = "">- -</option>
+                      <option value = "1&1" >KHR</option>
+                      {% for base,data in data.exchange_rate.items() %}
+                      <option value = {{data.bid}}&{{data.ask}} >{{base}}</option>
+                      {% endfor %}
+                  </select>
+                  
+                </div>
+                <label for="amount"></label>
+                <input id="input-amount" type="req_amount" pattern="[0-9]*" name="amount" 
+                data-type="currency" 
+                placeholder="Amount"
+                onkeydown="if (event.key === 'Enter') return false;">
         
-          {% if converted_amount is not none %}
-              <h2>Converted Amount:</h2>
-              <output name="converted_amount" for="to_bid to_ask"></output>
-          {% endif %}
-    </form>
+                  {% if converted_amount is not none  %}
+                        <div>
+                        <output id="output-amount" name="converted_amount" for="to_bid to_ask"></output>
+                        </div>
+                  {% endif %}
+
+            </form>
+            </div>
+        </div>
+      </section>
+
+    </main>
+    {% endif %}
     <script src="{{url_for('static', filename='scripts/script.js')}}"></script>
-</body>
+  </body>
 </html>

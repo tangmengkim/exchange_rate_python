@@ -4,13 +4,11 @@ import requests
 import json
 import os
 
-
 def exchange_rates(date=''):
     response = request_URL(date)
     if response != None:
         currencyData = getCurrencyData(response)
         date = getDateOfData(response)
-
         data_list= {
             'status_date': date ,
             'exchange_rate' : currencyData ,
@@ -24,26 +22,23 @@ def exchange_rates(date=''):
         }
     #convert dictionary to json_data
     json_data = json.dumps(data_list)
+    print(json_data)
     return(json_data)
 
 
 def request_URL(date):
     # get .env
     ACLD_WEBSITE = os.environ.get("ACLD_WEBSITE")
-
     payload = ''
     headersList = {
         "Content-Type": "application/x-www-form-urlencoded" 
         }
-    
     if date:
         payload = f"edit1={date}"
     try:
-        res = requests.request('POST',ACLD_WEBSITE,data=payload,headers=headersList) 
+        res = requests.request('POST', ACLD_WEBSITE, data = payload, headers = headersList) 
     # Check connection_status
-
         res.raise_for_status()  # Raise an error for bad responses (4xx or 5xx status codes)
-
         soup = BeautifulSoup(res.text,'html.parser')
         return soup
     except requests.exceptions.RequestException as e:
@@ -59,7 +54,6 @@ def getDateOfData(soup):
     # If parsing with time fails, try without time
     except ValueError:
         date_object = datetime.strptime(date_string, "%B %d, %Y")
-
     # Format as "YYYY-MM-DD"
     date = date_object.strftime("%Y-%m-%d")
     return date

@@ -26,11 +26,7 @@ td,
 th {
   padding: 1rem;
 }
-.table-header > h1 
-{
-  color: #27096cfe;
-  
-}
+
 .main-table 
 {
   width: 36px;
@@ -44,14 +40,19 @@ th {
 .table-header {
   width: 100%;
   height: 10%;
-  /* background-color: #fff4; */
   padding: 0.8rem 1rem;
+  margin-left: 1.6rem;
+}
+.table-header > h1 
+{
+  color: #acacacfe;
+  font-size: 40px;
 }
 .table-body {
   width: 95%;
   max-height: calc(89% 0.8rem);
   background-color: #b3ccd782;
-  margin: 0.8rem auto;
+  margin: -.3rem auto .8rem 1.6rem;
   border-radius: 0.6rem;
   overflow: auto;
 }
@@ -164,6 +165,7 @@ select
   padding: 10px 12px;
   border-radius: 4px;
   background-color: rgba(70, 142, 206, 0.707);
+  box-shadow: 0.1rem 0.1rem 3px 0px #274c6373;
   color: white;
   text-align: center;
   text-shadow:2px black;
@@ -177,4 +179,5 @@ input ,select ,button
   font-size: 30px;
   font-weight: 600;
   color: rgba(45, 45, 45, 0.596);
+  line-height: 30px;
 }

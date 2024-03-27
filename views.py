@@ -8,7 +8,7 @@ views_p = Blueprint(__name__,'views')
 def index():
     exchange_rate = json.loads(exchange_rates())
     if exchange_rate['status_code'] == 200:
-        return render_template('test.html', data=exchange_rate)
+        return render_template('index.html', data = exchange_rate)
     else:
         return ('no internet connection')
 
@@ -21,11 +21,6 @@ def process_data():
         # Process the data and load data as JSON
         exchange_rate = json.loads(exchange_rates( date_status ))
         if exchange_rate['status_code'] == 200:
-
-            return render_template('test.html',data=exchange_rate)
+            return render_template('index.html', data = exchange_rate)
         else:
             return ('no internet connection')
-
-@views_p.route('/test', methods=["GET"])
-def testing():
-    return render_template("test.html")

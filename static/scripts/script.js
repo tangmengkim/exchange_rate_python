@@ -12,27 +12,31 @@ function amount_convertor(amount,to_bid,to_ask){
     to_ask = toAsk_selected.value.split("&");
 
     // To check selection
-    if (to_ask != "" && to_bid != "" && amount) {
+    if (to_ask !="" && to_bid !="" && amount) {
     let ask,bid;
     // To check if 2selector is the same value
     if (to_bid[0] == to_ask[0]){
         ask = parseFloat(to_ask[0]);
         bid = parseFloat(to_bid[0]);
+        console.log(`${ask},${bid}`);
     }else{
         ask = parseFloat(to_ask[1]);
         bid = parseFloat(to_bid[0]);
+        console.log(`${ask},${bid}`);
     }
     // calculator
-    let converted = amount*((bid)/(ask));
-    // format float by setpoint (0.00)
-    converted_amount = converted.toFixed(2);
-    amount = amount.toFixed(2);
-    // set converted amount to string
-    converted_amount_text = `${amount} ${toBidSymbol} = ${converted_amount}  ${toAskSymbol} `;
+    let converted = parseFloat(amount*((bid)/(ask)));
 
-    return converted_amount_text;
+    // format float by setpoint (0.00)
+    converted_amount = converted.toLocaleString("en-US");
+    amount = amount.toLocaleString("en-US");
+    
+    // set converted amount to string
+    converted_amount_text = ` = <br>${converted_amount}  ${toAskSymbol}`;
+
+    document.getElementById('output-amount').innerHTML=converted_amount_text;
     } 
-    else return "";
+    
     }
 
 function swap_currency(){
