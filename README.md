@@ -1,5 +1,4 @@
 # exchange_rate_python
-Description
 
 ## Setup
 
@@ -20,3 +19,9 @@ source .venv/bin/activate
 
 # On Windows
 source .venv/Scripts/activate
+
+### 3. Install some module
+pip install -r requirements.txt
+
+### 4. Run app
+python -u app.py
