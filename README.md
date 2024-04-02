@@ -1,5 +1,4 @@
 # exchange_rate_python
-
 ## Setup
 
 ### 1. Prerequisites
@@ -23,5 +22,7 @@ source .venv/Scripts/activate
 ### 3. Install some module
 pip install -r requirements.txt
 
+### 4. Create SecretKey Environment
+cp .env.example .env
 ### 4. Run app
 python -u app.py
